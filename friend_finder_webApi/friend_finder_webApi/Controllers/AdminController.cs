@@ -38,7 +38,7 @@ namespace friend_finder_webApi.Controllers
         }
 
 
-        [Route("api/Change/Password")]
+        [Route("api/Admin/Password")]
         [HttpPost]
         public HttpResponseMessage ChangePass(string Currentpassword, string Newpassword, string Conpassword, int id)
         {

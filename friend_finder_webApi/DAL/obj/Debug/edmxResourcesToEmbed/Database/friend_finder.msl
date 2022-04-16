@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="friend_finderModelStoreContainer" CdmEntityContainer="friend_finderEntities">
+  <EntityContainerMapping StorageEntityContainer="Friend_Finder_Social_MediaModelStoreContainer" CdmEntityContainer="friend_finderEntities">
     <EntitySetMapping Name="Admins">
-      <EntityTypeMapping TypeName="friend_finderModel.Admin">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.Admin">
         <MappingFragment StoreEntitySet="Admins">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -13,7 +13,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Applicants">
-      <EntityTypeMapping TypeName="friend_finderModel.Applicant">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.Applicant">
         <MappingFragment StoreEntitySet="Applicants">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Job_id" ColumnName="Job_id" />
@@ -22,7 +22,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Categories">
-      <EntityTypeMapping TypeName="friend_finderModel.Category">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.Category">
         <MappingFragment StoreEntitySet="Categories">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="categoryname" ColumnName="categoryname" />
@@ -30,7 +30,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Comments">
-      <EntityTypeMapping TypeName="friend_finderModel.Comment">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.Comment">
         <MappingFragment StoreEntitySet="Comments">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Cmnt" ColumnName="Cmnt" />
@@ -41,7 +41,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Employees">
-      <EntityTypeMapping TypeName="friend_finderModel.Employee">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.Employee">
         <MappingFragment StoreEntitySet="Employees">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -54,7 +54,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Followings">
-      <EntityTypeMapping TypeName="friend_finderModel.Following">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.Following">
         <MappingFragment StoreEntitySet="Followings">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="User_id" ColumnName="User_id" />
@@ -63,7 +63,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Follows">
-      <EntityTypeMapping TypeName="friend_finderModel.Follow">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.Follow">
         <MappingFragment StoreEntitySet="Follows">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="User_id" ColumnName="User_id" />
@@ -72,7 +72,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Jobs">
-      <EntityTypeMapping TypeName="friend_finderModel.Job">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.Job">
         <MappingFragment StoreEntitySet="Jobs">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -84,7 +84,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Messages">
-      <EntityTypeMapping TypeName="friend_finderModel.Message">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.Message">
         <MappingFragment StoreEntitySet="Messages">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Msg" ColumnName="Msg" />
@@ -93,8 +93,37 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OrderHeadId" ColumnName="OrderHeadId" />
+          <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderInfos">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.OrderInfo">
+        <MappingFragment StoreEntitySet="OrderInfos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
+          <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+          <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Posts">
-      <EntityTypeMapping TypeName="friend_finderModel.Post">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.Post">
         <MappingFragment StoreEntitySet="Posts">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="User_Post" ColumnName="User_Post" />
@@ -105,7 +134,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Products">
-      <EntityTypeMapping TypeName="friend_finderModel.Product">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.Product">
         <MappingFragment StoreEntitySet="Products">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="productName" ColumnName="productName" />
@@ -118,7 +147,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Reacts">
-      <EntityTypeMapping TypeName="friend_finderModel.React">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.React">
         <MappingFragment StoreEntitySet="Reacts">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="User_React" ColumnName="User_React" />
@@ -128,7 +157,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Replies">
-      <EntityTypeMapping TypeName="friend_finderModel.Reply">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.Reply">
         <MappingFragment StoreEntitySet="Replies">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Reply_Cmnt" ColumnName="Reply_Cmnt" />
@@ -139,7 +168,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Requests">
-      <EntityTypeMapping TypeName="friend_finderModel.Request">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.Request">
         <MappingFragment StoreEntitySet="Requests">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Requested_by_id" ColumnName="Requested_by_id" />
@@ -147,8 +176,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ShoppingCarts">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.ShoppingCart">
+        <MappingFragment StoreEntitySet="ShoppingCarts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="count" ColumnName="count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="friend_finderModel.User">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.User">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Username" ColumnName="Username" />

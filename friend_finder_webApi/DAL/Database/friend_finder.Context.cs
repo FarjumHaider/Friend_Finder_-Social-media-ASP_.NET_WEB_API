@@ -34,11 +34,14 @@ namespace DAL.Database
         public DbSet<Follow> Follows { get; set; }
         public DbSet<Job> Jobs { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<OrderInfo> OrderInfos { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<React> Reacts { get; set; }
         public DbSet<Reply> Replies { get; set; }
         public DbSet<Request> Requests { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<User> Users { get; set; }
     }
 }

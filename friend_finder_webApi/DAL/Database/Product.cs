@@ -14,6 +14,12 @@ namespace DAL.Database
     
     public partial class Product
     {
+        public Product()
+        {
+            this.OrderDetails = new HashSet<OrderDetail>();
+            this.ShoppingCarts = new HashSet<ShoppingCart>();
+        }
+    
         public int Id { get; set; }
         public string productName { get; set; }
         public string productPrice { get; set; }
@@ -23,5 +29,7 @@ namespace DAL.Database
         public int categoryId { get; set; }
     
         public virtual Category Category { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
     }
 }
