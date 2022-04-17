@@ -9,13 +9,13 @@ using System.Web.Http;
 
 namespace friend_finder_webApi.Controllers.BusinessUser
 {
-    public class BusinessUser_OrderHeaderController : ApiController
+    public class BusinessUser_OrderHeadController : ApiController
     {
-        [Route("api/BusinessUser_OrderHeader/CreateOrderHead")]
+        [Route("api/BusinessUser_OrderHead/CreateOrderHead")]
         [HttpPost]
-        public void Add(OrderInfoModel pro)
+        public void Add(OrderHeadModel pro)
         {
-            OrderPlaceHeaderService.AddOrderHeader(pro);
+            OrderHeadService.AddOrderHead(pro);
         }
     }
 }

@@ -83,32 +83,16 @@
     <Property Name="Sender_id" Type="int" Nullable="false" />
     <Property Name="Receiver_id" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="OrderDetails">
+  <EntityType Name="OrderHeads">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="OrderHeadId" Type="int" Nullable="false" />
-    <Property Name="TotalCount" Type="int" Nullable="false" />
-    <Property Name="Price" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="ProductId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="OrderInfos">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="OrderDate" Type="datetime" Nullable="false" />
-    <Property Name="ShippingDate" Type="datetime" Nullable="false" />
-    <Property Name="OrderStatus" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="PaymentStatus" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="PaymentDate" Type="datetime" Nullable="false" />
-    <Property Name="PaymentDueDate" Type="datetime" />
-    <Property Name="TransactionId" Type="varchar(max)" />
-    <Property Name="PhoneNo" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="shopCartId" Type="int" Nullable="false" />
+    <Property Name="User_id" Type="int" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Posts">
     <Key>
@@ -166,6 +150,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="productId" Type="int" Nullable="false" />
     <Property Name="count" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -332,63 +317,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_OrderDetails_OrderInfos">
-    <End Role="OrderInfos" Type="Self.OrderInfos" Multiplicity="1" />
-    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+  <Association Name="FK_OrderHeads_ShoppingCarts">
+    <End Role="ShoppingCarts" Type="Self.ShoppingCarts" Multiplicity="1" />
+    <End Role="OrderHeads" Type="Self.OrderHeads" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="OrderInfos">
+      <Principal Role="ShoppingCarts">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="OrderDetails">
-        <PropertyRef Name="OrderHeadId" />
+      <Dependent Role="OrderHeads">
+        <PropertyRef Name="shopCartId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_OrderDetails_Products">
-    <End Role="Products" Type="Self.Products" Multiplicity="1" />
-    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+  <Association Name="FK_OrderHeads_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="OrderHeads" Type="Self.OrderHeads" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Products">
+      <Principal Role="Users">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="OrderDetails">
-        <PropertyRef Name="ProductId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderInfos_OrderInfos">
-    <End Role="OrderInfos" Type="Self.OrderInfos" Multiplicity="1" />
-    <End Role="OrderInfos1" Type="Self.OrderInfos" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="OrderInfos">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="OrderInfos1">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderInfos_OrderInfos1">
-    <End Role="OrderInfos" Type="Self.OrderInfos" Multiplicity="1" />
-    <End Role="OrderInfos1" Type="Self.OrderInfos" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="OrderInfos">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="OrderInfos1">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderInfos_OrderInfos2">
-    <End Role="OrderInfos" Type="Self.OrderInfos" Multiplicity="1" />
-    <End Role="OrderInfos1" Type="Self.OrderInfos" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="OrderInfos">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="OrderInfos1">
-        <PropertyRef Name="Id" />
+      <Dependent Role="OrderHeads">
+        <PropertyRef Name="User_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -490,7 +439,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ShoppingCarts_Products">
+  <Association Name="FK_ShoopingCarts_Products">
     <End Role="Products" Type="Self.Products" Multiplicity="1" />
     <End Role="ShoppingCarts" Type="Self.ShoppingCarts" Multiplicity="*" />
     <ReferentialConstraint>
@@ -499,6 +448,18 @@
       </Principal>
       <Dependent Role="ShoppingCarts">
         <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShoopingCarts_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="ShoppingCarts" Type="Self.ShoppingCarts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShoppingCarts">
+        <PropertyRef Name="user_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -512,8 +473,7 @@
     <EntitySet Name="Follows" EntityType="Self.Follows" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="OrderInfos" EntityType="Self.OrderInfos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderHeads" EntityType="Self.OrderHeads" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Reacts" EntityType="Self.Reacts" Schema="dbo" store:Type="Tables" />
@@ -573,25 +533,13 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="Messages" EntitySet="Messages" />
     </AssociationSet>
-    <AssociationSet Name="FK_OrderDetails_OrderInfos" Association="Self.FK_OrderDetails_OrderInfos">
-      <End Role="OrderInfos" EntitySet="OrderInfos" />
-      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    <AssociationSet Name="FK_OrderHeads_ShoppingCarts" Association="Self.FK_OrderHeads_ShoppingCarts">
+      <End Role="ShoppingCarts" EntitySet="ShoppingCarts" />
+      <End Role="OrderHeads" EntitySet="OrderHeads" />
     </AssociationSet>
-    <AssociationSet Name="FK_OrderDetails_Products" Association="Self.FK_OrderDetails_Products">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="OrderDetails" EntitySet="OrderDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderInfos_OrderInfos" Association="Self.FK_OrderInfos_OrderInfos">
-      <End Role="OrderInfos" EntitySet="OrderInfos" />
-      <End Role="OrderInfos1" EntitySet="OrderInfos" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderInfos_OrderInfos1" Association="Self.FK_OrderInfos_OrderInfos1">
-      <End Role="OrderInfos" EntitySet="OrderInfos" />
-      <End Role="OrderInfos1" EntitySet="OrderInfos" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderInfos_OrderInfos2" Association="Self.FK_OrderInfos_OrderInfos2">
-      <End Role="OrderInfos" EntitySet="OrderInfos" />
-      <End Role="OrderInfos1" EntitySet="OrderInfos" />
+    <AssociationSet Name="FK_OrderHeads_Users" Association="Self.FK_OrderHeads_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="OrderHeads" EntitySet="OrderHeads" />
     </AssociationSet>
     <AssociationSet Name="FK_Posts_Users" Association="Self.FK_Posts_Users">
       <End Role="Users" EntitySet="Users" />
@@ -625,8 +573,12 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="Requests" EntitySet="Requests" />
     </AssociationSet>
-    <AssociationSet Name="FK_ShoppingCarts_Products" Association="Self.FK_ShoppingCarts_Products">
+    <AssociationSet Name="FK_ShoopingCarts_Products" Association="Self.FK_ShoopingCarts_Products">
       <End Role="Products" EntitySet="Products" />
+      <End Role="ShoppingCarts" EntitySet="ShoppingCarts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShoopingCarts_Users" Association="Self.FK_ShoopingCarts_Users">
+      <End Role="Users" EntitySet="Users" />
       <End Role="ShoppingCarts" EntitySet="ShoppingCarts" />
     </AssociationSet>
   </EntityContainer>

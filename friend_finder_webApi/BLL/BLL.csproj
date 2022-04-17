@@ -53,7 +53,7 @@
     <Compile Include="Service\BusinessService\BusinessUserPostService.cs" />
     <Compile Include="Service\BusinessService\BusinessUserService.cs" />
     <Compile Include="Service\BusinessService\CategoryService.cs" />
-    <Compile Include="Service\BusinessService\OrderPlaceHeaderService.cs" />
+    <Compile Include="Service\BusinessService\OrderHeadService.cs" />
     <Compile Include="Service\BusinessService\ProductService.cs" />
     <Compile Include="Service\BusinessService\ShoppingCartService.cs" />
     <Compile Include="Service\CommentService.cs" />

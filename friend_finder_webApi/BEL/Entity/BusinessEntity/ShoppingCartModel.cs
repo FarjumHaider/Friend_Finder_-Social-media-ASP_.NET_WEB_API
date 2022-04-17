@@ -15,8 +15,9 @@ namespace BEL.Entity.BusinessEntity
         public int Id { get; set; }
         public int productId { get; set; }
         public int count { get; set; }
-        public int price { get; set; }
+        public int user_id { get; set; }
 
         public virtual ProductModel Product { get; set; }
+        public virtual BusinessUserModel User { get; set; }
     }
 }

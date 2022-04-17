@@ -99,42 +99,6 @@
     <NavigationProperty Name="User" Relationship="Self.FK_Messages_Users" FromRole="Messages" ToRole="Users" />
     <NavigationProperty Name="User1" Relationship="Self.FK_Messages_Users1" FromRole="Messages" ToRole="Users" />
   </EntityType>
-  <EntityType Name="OrderDetail">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="OrderHeadId" Type="Int32" Nullable="false" />
-    <Property Name="TotalCount" Type="Int32" Nullable="false" />
-    <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ProductId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="OrderInfo" Relationship="Self.FK_OrderDetails_OrderInfos" FromRole="OrderDetails" ToRole="OrderInfos" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_OrderDetails_Products" FromRole="OrderDetails" ToRole="Products" />
-  </EntityType>
-  <EntityType Name="OrderInfo">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="ShippingDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="OrderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="PaymentStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="PaymentDueDate" Type="DateTime" Precision="3" />
-    <Property Name="TransactionId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_OrderInfos" FromRole="OrderInfos" ToRole="OrderDetails" />
-    <NavigationProperty Name="OrderInfos1" Relationship="Self.FK_OrderInfos_OrderInfos" FromRole="OrderInfos" ToRole="OrderInfos1" />
-    <NavigationProperty Name="OrderInfo1" Relationship="Self.FK_OrderInfos_OrderInfos" FromRole="OrderInfos1" ToRole="OrderInfos" />
-    <NavigationProperty Name="OrderInfos11" Relationship="Self.FK_OrderInfos_OrderInfos1" FromRole="OrderInfos" ToRole="OrderInfos1" />
-    <NavigationProperty Name="OrderInfo2" Relationship="Self.FK_OrderInfos_OrderInfos1" FromRole="OrderInfos1" ToRole="OrderInfos" />
-    <NavigationProperty Name="OrderInfos12" Relationship="Self.FK_OrderInfos_OrderInfos2" FromRole="OrderInfos" ToRole="OrderInfos1" />
-    <NavigationProperty Name="OrderInfo3" Relationship="Self.FK_OrderInfos_OrderInfos2" FromRole="OrderInfos1" ToRole="OrderInfos" />
-  </EntityType>
   <EntityType Name="Post">
     <Key>
       <PropertyRef Name="Id" />
@@ -160,8 +124,7 @@
     <Property Name="productQuantity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="categoryId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Category" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
-    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Products" FromRole="Products" ToRole="OrderDetails" />
-    <NavigationProperty Name="ShoppingCarts" Relationship="Self.FK_ShoppingCarts_Products" FromRole="Products" ToRole="ShoppingCarts" />
+    <NavigationProperty Name="ShoppingCarts" Relationship="Self.FK_ShoopingCarts_Products" FromRole="Products" ToRole="ShoppingCarts" />
   </EntityType>
   <EntityType Name="React">
     <Key>
@@ -203,7 +166,10 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="productId" Type="Int32" Nullable="false" />
     <Property Name="count" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_ShoppingCarts_Products" FromRole="ShoppingCarts" ToRole="Products" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_ShoopingCarts_Products" FromRole="ShoppingCarts" ToRole="Products" />
+    <NavigationProperty Name="User" Relationship="Self.FK_ShoopingCarts_Users" FromRole="ShoppingCarts" ToRole="Users" />
+    <NavigationProperty Name="OrderHeads" Relationship="Friend_Finder_Social_MediaModel.FK_OrderHeads_ShoppingCarts" FromRole="ShoppingCart" ToRole="OrderHead" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -229,6 +195,8 @@
     <NavigationProperty Name="Replies" Relationship="Self.FK_Replies_Users" FromRole="Users" ToRole="Replies" />
     <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Users" FromRole="Users" ToRole="Requests" />
     <NavigationProperty Name="Requests1" Relationship="Self.FK_Requests_Users1" FromRole="Users" ToRole="Requests" />
+    <NavigationProperty Name="ShoppingCarts" Relationship="Self.FK_ShoopingCarts_Users" FromRole="Users" ToRole="ShoppingCarts" />
+    <NavigationProperty Name="OrderHeads" Relationship="Friend_Finder_Social_MediaModel.FK_OrderHeads_Users" FromRole="User" ToRole="OrderHead" />
   </EntityType>
   <Association Name="FK_Admins_Users">
     <End Role="Users" Type="Self.User" Multiplicity="1" />
@@ -412,66 +380,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_OrderDetails_OrderInfos">
-    <End Role="OrderInfos" Type="Self.OrderInfo" Multiplicity="1" />
-    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="OrderInfos">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="OrderDetails">
-        <PropertyRef Name="OrderHeadId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderDetails_Products">
-    <End Role="Products" Type="Self.Product" Multiplicity="1" />
-    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Products">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="OrderDetails">
-        <PropertyRef Name="ProductId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderInfos_OrderInfos">
-    <End Role="OrderInfos" Type="Self.OrderInfo" Multiplicity="1" />
-    <End Role="OrderInfos1" Type="Self.OrderInfo" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="OrderInfos">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="OrderInfos1">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderInfos_OrderInfos1">
-    <End Role="OrderInfos" Type="Self.OrderInfo" Multiplicity="1" />
-    <End Role="OrderInfos1" Type="Self.OrderInfo" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="OrderInfos">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="OrderInfos1">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderInfos_OrderInfos2">
-    <End Role="OrderInfos" Type="Self.OrderInfo" Multiplicity="1" />
-    <End Role="OrderInfos1" Type="Self.OrderInfo" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="OrderInfos">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="OrderInfos1">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Posts_Users">
     <End Role="Users" Type="Self.User" Multiplicity="1" />
     <End Role="Posts" Type="Self.Post" Multiplicity="*" />
@@ -496,7 +404,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ShoppingCarts_Products">
+  <Association Name="FK_ShoopingCarts_Products">
     <End Role="Products" Type="Self.Product" Multiplicity="1" />
     <End Role="ShoppingCarts" Type="Self.ShoppingCart" Multiplicity="*" />
     <ReferentialConstraint>
@@ -556,6 +464,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ShoopingCarts_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="ShoppingCarts" Type="Self.ShoppingCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShoppingCarts">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="friend_finderEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Admins" EntityType="Self.Admin" />
     <EntitySet Name="Applicants" EntityType="Self.Applicant" />
@@ -566,8 +486,6 @@
     <EntitySet Name="Follows" EntityType="Self.Follow" />
     <EntitySet Name="Jobs" EntityType="Self.Job" />
     <EntitySet Name="Messages" EntityType="Self.Message" />
-    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
-    <EntitySet Name="OrderInfos" EntityType="Self.OrderInfo" />
     <EntitySet Name="Posts" EntityType="Self.Post" />
     <EntitySet Name="Products" EntityType="Self.Product" />
     <EntitySet Name="Reacts" EntityType="Self.React" />
@@ -635,26 +553,6 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="Messages" EntitySet="Messages" />
     </AssociationSet>
-    <AssociationSet Name="FK_OrderDetails_OrderInfos" Association="Self.FK_OrderDetails_OrderInfos">
-      <End Role="OrderInfos" EntitySet="OrderInfos" />
-      <End Role="OrderDetails" EntitySet="OrderDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderDetails_Products" Association="Self.FK_OrderDetails_Products">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="OrderDetails" EntitySet="OrderDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderInfos_OrderInfos" Association="Self.FK_OrderInfos_OrderInfos">
-      <End Role="OrderInfos" EntitySet="OrderInfos" />
-      <End Role="OrderInfos1" EntitySet="OrderInfos" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderInfos_OrderInfos1" Association="Self.FK_OrderInfos_OrderInfos1">
-      <End Role="OrderInfos" EntitySet="OrderInfos" />
-      <End Role="OrderInfos1" EntitySet="OrderInfos" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderInfos_OrderInfos2" Association="Self.FK_OrderInfos_OrderInfos2">
-      <End Role="OrderInfos" EntitySet="OrderInfos" />
-      <End Role="OrderInfos1" EntitySet="OrderInfos" />
-    </AssociationSet>
     <AssociationSet Name="FK_Posts_Users" Association="Self.FK_Posts_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="Posts" EntitySet="Posts" />
@@ -663,7 +561,7 @@
       <End Role="Posts" EntitySet="Posts" />
       <End Role="Reacts" EntitySet="Reacts" />
     </AssociationSet>
-    <AssociationSet Name="FK_ShoppingCarts_Products" Association="Self.FK_ShoppingCarts_Products">
+    <AssociationSet Name="FK_ShoopingCarts_Products" Association="Self.FK_ShoopingCarts_Products">
       <End Role="Products" EntitySet="Products" />
       <End Role="ShoppingCarts" EntitySet="ShoppingCarts" />
     </AssociationSet>
@@ -683,5 +581,55 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="Requests" EntitySet="Requests" />
     </AssociationSet>
+    <AssociationSet Name="FK_ShoopingCarts_Users" Association="Self.FK_ShoopingCarts_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ShoppingCarts" EntitySet="ShoppingCarts" />
+    </AssociationSet>
+    <EntitySet Name="OrderHeads" EntityType="Friend_Finder_Social_MediaModel.OrderHead" />
+    <AssociationSet Name="FK_OrderHeads_ShoppingCarts" Association="Friend_Finder_Social_MediaModel.FK_OrderHeads_ShoppingCarts">
+      <End Role="ShoppingCart" EntitySet="ShoppingCarts" />
+      <End Role="OrderHead" EntitySet="OrderHeads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderHeads_Users" Association="Friend_Finder_Social_MediaModel.FK_OrderHeads_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="OrderHead" EntitySet="OrderHeads" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="OrderHead">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="shopCartId" Type="Int32" Nullable="false" />
+    <Property Name="User_id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ShoppingCart" Relationship="Friend_Finder_Social_MediaModel.FK_OrderHeads_ShoppingCarts" FromRole="OrderHead" ToRole="ShoppingCart" />
+    <NavigationProperty Name="User" Relationship="Friend_Finder_Social_MediaModel.FK_OrderHeads_Users" FromRole="OrderHead" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_OrderHeads_ShoppingCarts">
+    <End Type="Friend_Finder_Social_MediaModel.ShoppingCart" Role="ShoppingCart" Multiplicity="1" />
+    <End Type="Friend_Finder_Social_MediaModel.OrderHead" Role="OrderHead" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShoppingCart">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderHead">
+        <PropertyRef Name="shopCartId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderHeads_Users">
+    <End Type="Friend_Finder_Social_MediaModel.User" Role="User" Multiplicity="1" />
+    <End Type="Friend_Finder_Social_MediaModel.OrderHead" Role="OrderHead" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderHead">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

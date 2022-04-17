@@ -10,20 +10,18 @@ using System.Threading.Tasks;
 
 namespace BLL.Service.BusinessService
 {
-    public class OrderPlaceHeaderService
+    public class OrderHeadService
     {
-        public static void AddOrderHeader(OrderInfoModel pro)
+        public static void AddOrderHead(OrderHeadModel pro)
         {
             var config = new MapperConfiguration(c =>
             {
-                c.CreateMap<OrderInfoModel, OrderInfo>();
-                //c.CreateMap<ShoppingCart, ShoppingCartModel>();
-                
+                c.CreateMap<OrderHeadModel, OrderHead>();
 
             });
             var mapper = new Mapper(config);
-            var data = mapper.Map<OrderInfo>(pro);
-            DataAccessFactory.OrderInfoDataAccess().Add(data);
+            var data = mapper.Map<OrderHead>(pro);
+            DataAccessFactory.OrdeHeadDataAccess().Add(data);
         }
     }
 }

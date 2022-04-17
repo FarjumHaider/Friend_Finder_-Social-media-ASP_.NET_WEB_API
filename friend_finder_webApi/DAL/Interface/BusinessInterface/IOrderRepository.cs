@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Interface.BusinessInterface
 {
-    public interface IOrderDetailsRepository<T, ID>
+    public interface IOrderRepository<T,ID>
     {
+        void Add(T e);
+        bool Delete(ID id);
         List<T> Get();
         T Get(ID id);
     }

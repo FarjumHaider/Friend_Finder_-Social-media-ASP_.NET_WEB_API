@@ -38,6 +38,7 @@ namespace BLL.Service.BusinessService
                 c.CreateMap<ShoppingCart, ShoppingCartModel>();
                 c.CreateMap<Product, ProductModel>();
                 c.CreateMap<Category, CategoryModel>();
+                c.CreateMap<User, BusinessUserModel>();
 
             });
             var mapper = new Mapper(config);
@@ -55,6 +56,7 @@ namespace BLL.Service.BusinessService
                 c.CreateMap<ShoppingCart, ShoppingCartModel>();
                 c.CreateMap<Product, ProductModel>();
                 c.CreateMap<Category, CategoryModel>();
+                c.CreateMap<User, BusinessUserModel>();
 
             }
             );

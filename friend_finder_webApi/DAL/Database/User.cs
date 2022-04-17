@@ -32,6 +32,8 @@ namespace DAL.Database
             this.Replies = new HashSet<Reply>();
             this.Requests = new HashSet<Request>();
             this.Requests1 = new HashSet<Request>();
+            this.ShoppingCarts = new HashSet<ShoppingCart>();
+            this.OrderHeads = new HashSet<OrderHead>();
         }
     
         public int Id { get; set; }
@@ -55,5 +57,7 @@ namespace DAL.Database
         public virtual ICollection<Reply> Replies { get; set; }
         public virtual ICollection<Request> Requests { get; set; }
         public virtual ICollection<Request> Requests1 { get; set; }
+        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
+        public virtual ICollection<OrderHead> OrderHeads { get; set; }
     }
 }

@@ -14,10 +14,18 @@ namespace DAL.Database
     
     public partial class ShoppingCart
     {
+        public ShoppingCart()
+        {
+            this.OrderHeads = new HashSet<OrderHead>();
+        }
+    
         public int Id { get; set; }
         public int productId { get; set; }
         public int count { get; set; }
+        public int user_id { get; set; }
     
         public virtual Product Product { get; set; }
+        public virtual User User { get; set; }
+        public virtual ICollection<OrderHead> OrderHeads { get; set; }
     }
 }

@@ -94,10 +94,10 @@ namespace DAL
             return new ShoppingCartRepo(db);
         }
 
-        /*Business User OrderHeader*/
-        public static IOrderPlaceHeaderRepository<OrderInfo,int> OrderInfoDataAccess()
+        /*Business User OrderHead*/
+        public static IOrderHeadRepository<OrderHead, int> OrdeHeadDataAccess()
         {
-            return new OrderPlaceHeaderRepo(db);
+            return new OrderHeadRepo(db);
         }
 
 

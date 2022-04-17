@@ -8,7 +8,7 @@ namespace BEL.Entity.BusinessEntity
 {
     public class HeaderCartModel
     {
-        public virtual OrderInfoModel OrderHeader { get; set; }
+        public virtual OrderModel OrderHeader { get; set; }
         public virtual ShoppingCartModel Cart { get; set; }
     }
 }

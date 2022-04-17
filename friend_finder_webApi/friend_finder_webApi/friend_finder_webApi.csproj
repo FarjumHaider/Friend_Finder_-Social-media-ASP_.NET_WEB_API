@@ -93,7 +93,7 @@
     <Compile Include="Controllers\ApplicantController.cs" />
     <Compile Include="Controllers\BusinessUser\BusinessUserController.cs" />
     <Compile Include="Controllers\BusinessUser\BusinessUser_CategoryController.cs" />
-    <Compile Include="Controllers\BusinessUser\BusinessUser_OrderHeaderController.cs" />
+    <Compile Include="Controllers\BusinessUser\BusinessUser_OrderHeadController.cs" />
     <Compile Include="Controllers\BusinessUser\BusinessUser_PostController.cs" />
     <Compile Include="Controllers\BusinessUser\BusinessUser_ProductController.cs" />
     <Compile Include="Controllers\BusinessUser\BusinessUser_ShoppingController.cs" />

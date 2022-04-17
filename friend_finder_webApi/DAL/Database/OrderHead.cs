@@ -12,12 +12,22 @@ namespace DAL.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderDetail
+    public partial class OrderHead
     {
-        public int Id { get; set; }
-        public int OrderHeadId { get; set; }
-        public string price { get; set; }
+        public OrderHead()
+        {
+            this.OrderDetails = new HashSet<OrderDetail>();
+        }
     
-        public virtual OrderHead OrderHead { get; set; }
+        public int Id { get; set; }
+        public int shopCartId { get; set; }
+        public int User_id { get; set; }
+        public string Name { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
+    
+        public virtual ShoppingCart ShoppingCart { get; set; }
+        public virtual User User { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

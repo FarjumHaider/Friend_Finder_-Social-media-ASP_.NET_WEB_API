@@ -96,7 +96,7 @@
     <Compile Include="Database\OrderDetail.cs">
       <DependentUpon>friend_finder.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\OrderInfo.cs">
+    <Compile Include="Database\OrderHead.cs">
       <DependentUpon>friend_finder.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Post.cs">
@@ -124,8 +124,8 @@
     <Compile Include="Interface\BusinessInterface\IBusinessUserCommentRepository.cs" />
     <Compile Include="Interface\BusinessInterface\IBusinessUserRepository.cs" />
     <Compile Include="Interface\BusinessInterface\ICategoryRepository.cs" />
-    <Compile Include="Interface\BusinessInterface\IOrderDetailsRepository.cs" />
-    <Compile Include="Interface\BusinessInterface\IOrderPlaceHeaderRepository.cs" />
+    <Compile Include="Interface\BusinessInterface\IOrderHeadRepository.cs" />
+    <Compile Include="Interface\BusinessInterface\IOrderRepository.cs" />
     <Compile Include="Interface\BusinessInterface\IShoppingCartRepository.cs" />
     <Compile Include="Interface\IAdminRepository.cs" />
     <Compile Include="Interface\IApplicantRepository.cs" />
@@ -144,7 +144,8 @@
     <Compile Include="Repo\BusinessRepo\BusinessUserPostRepo.cs" />
     <Compile Include="Repo\BusinessRepo\BusinessUserRepo.cs" />
     <Compile Include="Repo\BusinessRepo\CategoryRepo.cs" />
-    <Compile Include="Repo\BusinessRepo\OrderPlaceHeaderRepo.cs" />
+    <Compile Include="Repo\BusinessRepo\OrderHeadRepo.cs" />
+    <Compile Include="Repo\BusinessRepo\OrderRepo.cs" />
     <Compile Include="Repo\BusinessRepo\ProductRepo.cs" />
     <Compile Include="Repo\BusinessRepo\ShoppingCartRepo.cs" />
     <Compile Include="Repo\CommentRepo.cs" />

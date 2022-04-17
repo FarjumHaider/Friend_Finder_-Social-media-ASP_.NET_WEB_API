@@ -93,35 +93,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="OrderDetails">
-      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.OrderDetail">
-        <MappingFragment StoreEntitySet="OrderDetails">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="OrderHeadId" ColumnName="OrderHeadId" />
-          <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="OrderInfos">
-      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.OrderInfo">
-        <MappingFragment StoreEntitySet="OrderInfos">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
-          <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
-          <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
-          <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
-          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
-          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
-          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
-          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Posts">
       <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.Post">
         <MappingFragment StoreEntitySet="Posts">
@@ -182,6 +153,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="productId" ColumnName="productId" />
           <ScalarProperty Name="count" ColumnName="count" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -192,6 +164,18 @@
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderHeads">
+      <EntityTypeMapping TypeName="Friend_Finder_Social_MediaModel.OrderHead">
+        <MappingFragment StoreEntitySet="OrderHeads">
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="shopCartId" ColumnName="shopCartId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

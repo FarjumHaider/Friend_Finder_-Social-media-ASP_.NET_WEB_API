@@ -52,7 +52,9 @@
     <Compile Include="Entity\BusinessEntity\BusinessUserPostModel.cs" />
     <Compile Include="Entity\BusinessEntity\CategoryModel.cs" />
     <Compile Include="Entity\BusinessEntity\HeaderCartModel.cs" />
-    <Compile Include="Entity\BusinessEntity\OrderInfoModel.cs" />
+    <Compile Include="Entity\BusinessEntity\OrderDetailModel.cs" />
+    <Compile Include="Entity\BusinessEntity\OrderHeadModel.cs" />
+    <Compile Include="Entity\BusinessEntity\OrderModel.cs" />
     <Compile Include="Entity\BusinessEntity\ProductModel.cs" />
     <Compile Include="Entity\BusinessEntity\ShoppingCartModel.cs" />
     <Compile Include="Entity\CommentReplyModel.cs" />

@@ -16,7 +16,6 @@ namespace DAL.Database
     {
         public Product()
         {
-            this.OrderDetails = new HashSet<OrderDetail>();
             this.ShoppingCarts = new HashSet<ShoppingCart>();
         }
     
@@ -29,7 +28,6 @@ namespace DAL.Database
         public int categoryId { get; set; }
     
         public virtual Category Category { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
     }
 }
