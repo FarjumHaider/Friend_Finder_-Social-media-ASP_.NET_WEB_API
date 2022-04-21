@@ -83,6 +83,14 @@
     <Property Name="Sender_id" Type="int" Nullable="false" />
     <Property Name="Receiver_id" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="OrderDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderHeadId" Type="int" Nullable="false" />
+    <Property Name="price" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="OrderHeads">
     <Key>
       <PropertyRef Name="Id" />
@@ -317,6 +325,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_OrderDetails_OrderHeads">
+    <End Role="OrderHeads" Type="Self.OrderHeads" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderHeads">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="OrderHeadId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_OrderHeads_ShoppingCarts">
     <End Role="ShoppingCarts" Type="Self.ShoppingCarts" Multiplicity="1" />
     <End Role="OrderHeads" Type="Self.OrderHeads" Multiplicity="*" />
@@ -473,6 +493,7 @@
     <EntitySet Name="Follows" EntityType="Self.Follows" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderHeads" EntityType="Self.OrderHeads" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
@@ -532,6 +553,10 @@
     <AssociationSet Name="FK_Messages_Users1" Association="Self.FK_Messages_Users1">
       <End Role="Users" EntitySet="Users" />
       <End Role="Messages" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_OrderHeads" Association="Self.FK_OrderDetails_OrderHeads">
+      <End Role="OrderHeads" EntitySet="OrderHeads" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderHeads_ShoppingCarts" Association="Self.FK_OrderHeads_ShoppingCarts">
       <End Role="ShoppingCarts" EntitySet="ShoppingCarts" />

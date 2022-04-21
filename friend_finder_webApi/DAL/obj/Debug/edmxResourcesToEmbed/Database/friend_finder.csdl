@@ -594,6 +594,11 @@
       <End Role="User" EntitySet="Users" />
       <End Role="OrderHead" EntitySet="OrderHeads" />
     </AssociationSet>
+    <EntitySet Name="OrderDetails" EntityType="Friend_Finder_Social_MediaModel.OrderDetail" />
+    <AssociationSet Name="FK_OrderDetails_OrderHeads" Association="Friend_Finder_Social_MediaModel.FK_OrderDetails_OrderHeads">
+      <End Role="OrderHead" EntitySet="OrderHeads" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="OrderHead">
     <Key>
@@ -607,6 +612,7 @@
     <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="ShoppingCart" Relationship="Friend_Finder_Social_MediaModel.FK_OrderHeads_ShoppingCarts" FromRole="OrderHead" ToRole="ShoppingCart" />
     <NavigationProperty Name="User" Relationship="Friend_Finder_Social_MediaModel.FK_OrderHeads_Users" FromRole="OrderHead" ToRole="User" />
+    <NavigationProperty Name="OrderDetails" Relationship="Friend_Finder_Social_MediaModel.FK_OrderDetails_OrderHeads" FromRole="OrderHead" ToRole="OrderDetail" />
   </EntityType>
   <Association Name="FK_OrderHeads_ShoppingCarts">
     <End Type="Friend_Finder_Social_MediaModel.ShoppingCart" Role="ShoppingCart" Multiplicity="1" />
@@ -629,6 +635,27 @@
       </Principal>
       <Dependent Role="OrderHead">
         <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderHeadId" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrderHead" Relationship="Friend_Finder_Social_MediaModel.FK_OrderDetails_OrderHeads" FromRole="OrderDetail" ToRole="OrderHead" />
+  </EntityType>
+  <Association Name="FK_OrderDetails_OrderHeads">
+    <End Type="Friend_Finder_Social_MediaModel.OrderHead" Role="OrderHead" Multiplicity="1" />
+    <End Type="Friend_Finder_Social_MediaModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderHead">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="OrderHeadId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

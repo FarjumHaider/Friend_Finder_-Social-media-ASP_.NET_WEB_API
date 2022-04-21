@@ -35,7 +35,7 @@ namespace BLL.Service.BusinessService
             var config = new MapperConfiguration(c =>
             {
                 c.CreateMap<Post, BusinessUserPostModel>();
-                c.CreateMap<BusinessUserModel, User>();
+                c.CreateMap<User, BusinessUserModel>();
                 //c.CreateMap<BusinessCommentModel, Comment>();
 
             }
